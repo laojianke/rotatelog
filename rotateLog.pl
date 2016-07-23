@@ -24,8 +24,7 @@ sub rotateLog($) {
 	my  $MAXFILENUM = $params->{MAXFILENUM};
 	my  $SVCCMD = $params->{SVCCMD};
 	foreach my $LOGNAME( @{$LOGREF} ) {
-        my $logSize=0;
-        $logSize = (-s $LOGNAME) if ( -f "$LOGNAME" );
+        my $logSize = ( -f $LOGNAME ) ? (-s $LOGNAME):0;
         if ( $logSize >= $MAXLOGSIZE ) {
             my $fileId = 0;
             my @fileList = glob( $LOGNAME . '*' );
